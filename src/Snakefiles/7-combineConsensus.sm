@@ -94,7 +94,7 @@ cat > ./updateGFA.sh <<EOF
 #!/bin/sh
 set -e
 
-{PYTHON} {VERKKO}/bin/alignGFA \\\\
+{VERKKO}/bin/alignGFA \\\\
   -V -e 0.20 -gfa              \\\\
   -i ../{input.graph}          \\\\
   -T ../{input.consensus} 0    \\\\
