@@ -69,3 +69,41 @@ chmod +x ./combineConsensus.sh
 
 ./combineConsensus.sh > ../{log.err} 2>&1
         '''
+
+rule updateGFA:
+    input:
+       consensus = rules.combineConsensus.output.fasta,
+       graph     = rules.untip.output.graph,
+    output:
+       graph     = rules.verkko.input.graph, 
+    log:
+       err       = '7-consensus/updateGFA.err'
+    params:
+       jobid     = 1
+    threads:
+       8
+    resources:
+       n_cpus = 8,
+       mem_gb = 32,
+       time_h = 24
+    shell:
+       '''
+cd 7-consensus
+
+cat > ./updateGFA.sh <<EOF
+#!/bin/sh
+set -e
+
+{PYTHON} {VERKKO}/bin/alignGFA \\\\
+  -V -e 0.20 -gfa              \\\\
+  -i ../{input.graph}          \\\\
+  -T ../{input.consensus} 0    \\\\
+  -t {threads}                 \\\\
+  -o ../{output.graph}
+
+EOF
+
+chmod +x ./updateGFA.sh
+
+./updateGFA.sh > ../{log.err} 2>&1
+        '''

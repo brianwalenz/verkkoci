@@ -29,7 +29,7 @@ rule untip:
         graph  = rules.processONT.output.graph if config['withONT'] == "True" else rules.processGraph.output.gfa,
         hificov= rules.buildGraph.output.hificov
     output:
-        graph  = rules.verkko.input.graph,
+        graph  = "5-untip/unitig-popped-unitig-normal-connected-tip.gfa",
         hificov= "5-untip/nodecov_hifi_fix.csv"
     log:
         err    = '5-untip/untip.err'

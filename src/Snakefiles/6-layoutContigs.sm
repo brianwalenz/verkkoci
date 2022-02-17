@@ -28,7 +28,7 @@
 
 rule layoutContigs:
     input:
-        graph  = rules.verkko.input.graph,
+        graph  = rules.untip.output.graph,
         paths  = rules.buildGraph.output.paths,
     output:
         layout = rules.verkko.input.layout,

@@ -71,6 +71,9 @@ endif
 ifeq ($(wildcard utgcns/utgcns.C), )
   $(shell ln -s canu/src/utgcns utgcns)
 endif
+ifeq ($(wildcard gfa/alignGFA.C), )
+  $(shell  ln -s canu/src/gfa gfa)
+endif 
 ifeq ($(wildcard utility/src), )
   $(shell ln -s canu/src/utility utility)
 endif
@@ -716,6 +719,7 @@ all: $(addprefix ${TARGET_DIR}/,${ALL_TGTS}) \
      ../lib/verkko/bin/sqStoreCreate \
      ../lib/verkko/bin/sqStoreDumpMetaData \
      ../lib/verkko/bin/utgcns \
+     ../lib/verkko/bin/alignGFA \
      ../lib/verkko/bin/seqrequester \
      \
      ../lib/verkko/scripts/add_fake_alignments.py \
@@ -798,7 +802,7 @@ $(foreach TGT,${ALL_TGTS},\
   $(eval $(call ADD_CLEAN_RULE,${TGT})))
 clean:
 	find build -type d -print | sort -r | xargs -n 100 rmdir
-	rm meryl overlapInCore seqrequester overlapErrorAdjustment stores utgcns  utility 
+	rm meryl overlapInCore seqrequester overlapErrorAdjustment stores utgcns gfa utility
 
 # Include generated rules that define additional (header) dependencies.
 $(foreach TGT,${ALL_TGTS},\
