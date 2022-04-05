@@ -22,8 +22,8 @@ jobs:
 
     - name: Compile
       uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
+      with:
+        toolchain: stable
       run: |
         cd src
         make -j 2
