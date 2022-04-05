@@ -20,10 +20,12 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Compile
+    - name: Install Rust
       uses: actions-rs/toolchain@v1
       with:
         toolchain: stable
+
+    - name: Compile
       run: |
         cd src
         make -j 2
